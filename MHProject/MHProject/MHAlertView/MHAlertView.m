@@ -19,6 +19,17 @@
     return sharedInstance;
 }
 
+
+/**
+ 默认Alert
+
+ @param parantView :
+ @param title :
+ @param subTitle :
+ @param cancelTitle :
+ @param array :
+ @param callBack :
+ */
 - (void)showMHAlertInView:(UIView *)parantView title:(NSString *)title subTitle:(NSString *)subTitle cancelBtnTitle:(NSString *)cancelTitle otherBtnTitleArray:(NSArray *)array callBack:(CallBackBlock)callBack {
     self.callBackBlock = callBack;
     
@@ -29,17 +40,31 @@
     [vc showMHAlertViewWithTitle:@"我是标题title" subTitle:@"我是副标题subTitle我是副标题subTitle我是副标题subTitle" cancelBtnTitle: @"取消" otherBtnTitleArray:@[@"确定1",@"确定2"] callBack:^(NSInteger tag) {
         NSLog(@"%ld", tag); //100为取消按钮
     }];
+    [parantView addSubview:self];
+    [[self viewController] presentViewController:vc  animated:NO completion:nil];
+}
+
+
+/**
+ 自定义Alert
+
+ @param parantView :
+ @param title :
+ @param subView :
+ @param cancelTitle :
+ @param array :
+ @param callBack :
+ */
+- (void)showMHAlertInView:(UIView *)parantView title:(NSString *)title subView:(UIView *)subView cancelBtnTitle:(NSString *)cancelTitle otherBtnTitleArray:(NSArray *)array callBack:(CallBackBlock)callBack{
+    self.callBackBlock = callBack;
     
+    MHAlertViewController *vc = [[MHAlertViewController alloc] init];
+    [vc setModalPresentationStyle:UIModalPresentationOverCurrentContext];
     
-    //自定义alertView
-//    UIView *vv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 360, 360)];
-//    vv.backgroundColor = [UIColor greenColor];
-//    [vc showMHAlertCustomViewWithTitle:@"我是标题title" subView:vv cancelBtnTitle:@"取消" otherBtnTitleArray:@[@"确定"] callBack:^(NSInteger tag) {
-//        NSLog(@"%ld", tag); //100为取消按钮
-//    }];
-    
-    
-    
+   
+    [vc showMHAlertCustomViewWithTitle:@"我是标题title" subView:  subView cancelBtnTitle:@"取消" otherBtnTitleArray:@[@"确定"] callBack:^(NSInteger tag) {
+        NSLog(@"%ld", tag); //100为取消按钮
+    }];
     [parantView addSubview:self];
     [[self viewController] presentViewController:vc  animated:NO completion:nil];
 }
