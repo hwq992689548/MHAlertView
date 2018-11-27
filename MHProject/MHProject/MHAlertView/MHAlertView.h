@@ -16,6 +16,9 @@ typedef void(^CallBackBlock) (NSInteger tag); //1
 
 + (instancetype)sharedInstance;
 - (void)showMHAlertInView:(UIView *)parantView title:(NSString *)title subTitle:(NSString *)subTitle cancelBtnTitle:(NSString *)cancelTitle otherBtnTitleArray:(NSArray *)array callBack:(CallBackBlock)callBack;
+
+- (void)showMHAlertInView:(UIView *)parantView title:(NSString *)title subView:(UIView *)subView cancelBtnTitle:(NSString *)cancelTitle otherBtnTitleArray:(NSArray *)array callBack:(CallBackBlock)callBack;
+
 @end
 
 NS_ASSUME_NONNULL_END
